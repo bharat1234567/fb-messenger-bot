@@ -62,7 +62,7 @@ def received_message(event):
     # could receive text or attachment but not both
     if "text" in event["message"]:
         message_text = event["message"]["text"]
-
+        log("text is received in msg......................................................................")
         # parse message_text and give appropriate response
         if message_text == 'image':
             send_image_message(sender_id)
@@ -89,6 +89,7 @@ def received_message(event):
             send_text_message(sender_id, "Echo: " + message_text)
 
     elif "attachments" in event["message"]:
+        log("attachment is received as message............................................................")
         message_attachments = event["message"]["attachments"]
         send_text_message(sender_id, "Message with attachment received")
 
