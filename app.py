@@ -40,10 +40,12 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     log("starting for loop on messaging event.............................................................................")
                     for s in messaging_event:
-                        log(s)
-                    message_text = messaging_event['message']['text']
-                    msg_seq = messaging_event['message']['seq']
-                    log("..........................................................message sent by user is == " + message_text + "  fg " + msg_seq)
+                        for k in s:
+                            log(k)
+                     # message_text = messaging_event['message']['text']
+
+                    #msg_seq = messaging_event['message']['seq']
+                    #log("..........................................................message sent by user is == " + message_text + "  fg " + msg_seq)
                     send_message(sender_id, "roger that!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
