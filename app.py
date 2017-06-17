@@ -41,9 +41,8 @@ def webhook():
                     log("starting for loop on messaging event.............................................................................")
                     for s in messaging_event:
                         log(s)
-                    if "text" in messaging_event:
-                        message_text = messaging_event["message"]["text"]
-                        log("..........................................................message sent by user is == " + message_text)
+                    message_text = messaging_event["message"]
+                    log("..........................................................message sent by user is == " + message_text)
                     send_message(sender_id, "roger that!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
