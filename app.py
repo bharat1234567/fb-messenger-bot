@@ -1,7 +1,6 @@
 import os
 import sys
 import json
-
 import requests
 from flask import Flask, request
 
@@ -12,7 +11,9 @@ app = Flask(__name__)
 def verify():
     # when the endpoint is registered as a webhook, it must echo back
     # the 'hub.challenge' value it receives in the query arguments
+    log("URL is accessed as get method................................................................................ ")
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
+        log("hub.mode == " + request.args.get("hub.mode"))
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
@@ -24,7 +25,7 @@ def verify():
 def webhook():
 
     # endpoint for processing incoming messaging events
-
+    log("message came from facebook....................................................................... ")
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
@@ -78,7 +79,7 @@ def send_message(recipient_id, message_text):
 
 
 def log(message):  # simple wrapper for logging to stdout on heroku
-    print str(message)
+    print(str,message)
     sys.stdout.flush()
 
 
