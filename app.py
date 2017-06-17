@@ -93,7 +93,7 @@ def received_message(event):
         send_text_message(sender_id, "Message with attachment received")
 
 
-def send_message(recipient_id, message_text):
+def send_text_message(recipient_id, message_text):
 
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
