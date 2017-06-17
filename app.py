@@ -2,6 +2,7 @@ import os
 import sys
 import json
 import requests
+import datetime
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -63,6 +64,9 @@ def received_message(event):
     if "text" in event["message"]:
         message_text = event["message"]["text"]
         log("text is received in msg......................................................................")
+        if message_text == "current time":
+            send_text_message(sender_id,str(datetime.datetime.now()))
+            return
         # parse message_text and give appropriate response
         if message_text == 'image':
             send_image_message(sender_id)
